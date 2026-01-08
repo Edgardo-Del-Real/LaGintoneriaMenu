@@ -77,8 +77,9 @@
                 
                 <li class="snap-center"><button onclick="switchTab('tab-gins', this)" class="nav-btn active whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-orange text-white shadow-orange-glow transition-all duration-300">Gins & Tónicas</button></li>
 
-                <li class="snap-center"><button onclick="switchTab('tab-tragos', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Coctelería</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-tragos-clasicos', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Tragos</button></li>
 
+                <li class="snap-center"><button onclick="switchTab('tab-tragos-autor', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Tragos de Autor</button></li>
                 <li class="snap-center"><button onclick="switchTab('tab-cervezas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Cervezas</button></li>
 
                 <li class="snap-center"><button onclick="switchTab('tab-burgers', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Hamburguesas</button></li>
@@ -105,13 +106,19 @@
             <div id="loader-tab-gins" class="text-brand-muted text-sm text-center animate-pulse py-10">Preparando copas...</div>
         </section>
 
-        <section id="tab-tragos" class="menu-section hidden gap-4">
+        <section id="tab-tragos-clasicos" class="menu-section hidden gap-4">
             <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Coctelería Clásica
+                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Tragos Clásicos
             </h2>
-            <div id="loader-tab-tragos" class="text-brand-muted text-sm text-center animate-pulse py-10">Preparando coctelera...</div>
+            <div id="loader-tab-tragos-clasicos" class="text-brand-muted text-sm text-center animate-pulse py-10">Preparando clásicos...</div>
         </section>
 
+        <section id="tab-tragos-autor" class="menu-section hidden gap-4">
+            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
+                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Tragos de Autor
+            </h2>
+            <div id="loader-tab-tragos-autor" class="text-brand-muted text-sm text-center animate-pulse py-10">Creando magia...</div>
+        </section>
         <section id="tab-cervezas" class="menu-section hidden gap-4">
             <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
                 <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Birras
@@ -259,8 +266,19 @@
             if (cat.includes('cerveza') || cat.includes('porron')) return 'tab-cervezas';
             if (cat.includes('postre')) return 'tab-postres';
 
-            const keywordsAlcohol = ['trago', 'fernet', 'vermut', 'champagne', 'espumante', 'jagger', 'absolut', 'smirnoff', 'campari', 'gancia'];
-            if (keywordsAlcohol.some(key => cat.includes(key))) return 'tab-tragos';
+            // --- Lógica Nueva de Tragos ---
+            
+            // 1. Tragos de Autor: Si dice "autor", "especial", "firma" o "casa"
+            if (cat.includes('autor') || cat.includes('especial') || cat.includes('firma') || cat.includes('casa')) {
+                return 'tab-tragos-autor';
+            }
+
+            // 2. Tragos Clásicos: Palabras clave generales
+            const keywordsAlcohol = ['trago', 'fernet', 'vermut', 'champagne', 'espumante', 'jagger', 'absolut', 'smirnoff', 'campari', 'gancia', 'aperol', 'negroni', 'clasico', 'clásico', 'caipira', 'mojito', 'cuba'];
+            
+            if (keywordsAlcohol.some(key => cat.includes(key))) {
+                return 'tab-tragos-clasicos';
+            }
 
             return null;
         }
@@ -273,9 +291,12 @@
                 'tab-papas': 'https://images.unsplash.com/photo-1630384060421-a4323ce56d46?q=80&w=400&fit=crop', 
                 'tab-tequenos': 'https://images.unsplash.com/photo-1563503254-2061ebc6b30f?q=80&w=400&fit=crop', 
                 'tab-gins': 'https://images.unsplash.com/photo-1563223771-47d70cb72725?q=80&w=400&fit=crop', 
-                'tab-tragos': 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=400&fit=crop', 
                 'tab-cervezas': 'https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=400&fit=crop',
-                'tab-postres': 'https://images.unsplash.com/photo-1563729768-6af58464107b?q=80&w=400&fit=crop'
+                'tab-postres': 'https://images.unsplash.com/photo-1563729768-6af58464107b?q=80&w=400&fit=crop',
+                
+                // Imágenes por defecto para las nuevas secciones
+                'tab-tragos-clasicos': 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=400&fit=crop',
+                'tab-tragos-autor': 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=400&fit=crop'
             };
             return images[sectionId] || images['tab-burgers'];
         }
