@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -27,12 +27,13 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         display: ['"Barlow Condensed"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
                     },
                     boxShadow: {
                         'orange-glow': '0 4px 30px -5px rgba(255, 77, 0, 0.3)',
                     },
                     backgroundImage: {
-                        'hero-gradient': 'linear-gradient(to top, #0A0F0D 15%, rgba(10, 15, 13, 0.8) 60%, rgba(10, 15, 13, 0.2) 100%)'
+                        'hero-gradient': 'linear-gradient(to top, #0A0F0D 10%, rgba(10, 15, 13, 0.8) 50%, rgba(10, 15, 13, 0.3) 100%)',
                     }
                 }
             }
@@ -43,175 +44,160 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        .fade-in { animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); scale: 0.99; } to { opacity: 1; transform: translateY(0); scale: 1; } }
+        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         
-        .logo-white-filter { filter: brightness(0) invert(1) drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
+        .logo-white-filter { filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .text-glow { text-shadow: 0 0 20px rgba(255, 77, 0, 0.2); }
     </style>
 </head>
 
-<body class="bg-brand-dark text-brand-text font-sans antialiased pb-0 overflow-x-hidden selection:bg-brand-orange/30">
+<body class="bg-brand-dark text-brand-text font-sans antialiased pb-0 overflow-x-hidden selection:bg-brand-orange/30 flex flex-col min-h-screen">
 
-    <header class="relative h-[40vh] min-h-[300px] overflow-hidden flex items-end justify-center pb-8">
+    <header class="relative h-[45vh] min-h-[320px] overflow-hidden flex items-end justify-center pb-10">
         <div class="absolute inset-0 z-0">
-            <img src="assets/images/Hero.png" alt="Gin Tonic" class="w-full h-full object-cover scale-105 opacity-80">
+            <img src="assets/images/Hero.png" alt="Gin Tonic" class="w-full h-full object-cover opacity-70">
             <div class="absolute inset-0 bg-hero-gradient"></div>
         </div>
 
-        <div class="relative z-10 text-center px-6 max-w-md mx-auto flex flex-col items-center">
+        <div class="relative z-10 text-center px-6 max-w-xl mx-auto flex flex-col items-center">
             
-            <h1 class="font-display font-bold text-5xl tracking-[0.1em] uppercase text-white mb-2 drop-shadow-2xl leading-none">
-                La Gintoneria
+            <h1 class="font-serif italic font-bold text-6xl md:text-7xl text-white mb-4 drop-shadow-2xl leading-[0.9] text-glow fade-in" style="animation-delay: 0.2s;">
+                La Gintonería
             </h1>
             
-            <div class="h-0.5 w-12 bg-brand-orange rounded-full mb-3 shadow-orange-glow"></div>
+            <p class="font-sans font-light text-brand-muted text-sm tracking-wider uppercase opacity-80 mb-6 fade-in" style="animation-delay: 0.3s;">Cócteles de Autor & Cocina</p>
+
+            <div class="h-px w-24 bg-gradient-to-r from-transparent via-brand-orange to-transparent opacity-80 shadow-orange-glow fade-in" style="animation-delay: 0.4s;"></div>
         </div>
     </header>
 
-    <nav class="sticky top-0 z-50 bg-brand-dark/90 backdrop-blur-xl border-b border-white/5 py-3 shadow-2xl shadow-black/50">
+    <nav class="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-white/5 py-3 shadow-2xl shadow-black/50">
         <div class="relative max-w-lg mx-auto">
-            <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
             
             <ul class="flex overflow-x-auto gap-2 px-4 no-scrollbar relative z-0 snap-x items-center" id="nav-tabs">
-                
-                <li class="snap-center"><button onclick="switchTab('tab-gins', this)" class="nav-btn active whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-orange text-white shadow-orange-glow transition-all duration-300">Gins & Tónicas</button></li>
-
-                <li class="snap-center"><button onclick="switchTab('tab-tragos-clasicos', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Tragos</button></li>
-
-                <li class="snap-center"><button onclick="switchTab('tab-tragos-autor', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Tragos de Autor</button></li>
-                <li class="snap-center"><button onclick="switchTab('tab-cervezas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Cervezas</button></li>
-
-                <li class="snap-center"><button onclick="switchTab('tab-burgers', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Hamburguesas</button></li>
-                
-                <li class="snap-center"><button onclick="switchTab('tab-sandwiches', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Sándwiches</button></li>
-
-                <li class="snap-center"><button onclick="switchTab('tab-pizzas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Pizzas</button></li>
-                
-                <li class="snap-center"><button onclick="switchTab('tab-papas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Papas Fritas</button></li>
-
-                <li class="snap-center"><button onclick="switchTab('tab-tequenos', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Tequeños & Empanadas</button></li>
-
-                <li class="snap-center"><button onclick="switchTab('tab-postres', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Postres</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-gins', this)" class="nav-btn active whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-orange text-white shadow-orange-glow transition-all duration-300 transform active:scale-95">Gins</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-tragos-clasicos', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Tragos</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-tragos-autor', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Autor</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-cervezas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Birras</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-burgers', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Burgers</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-sandwiches', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Sándwiches</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-pizzas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Pizzas</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-papas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Papas</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-tequenos', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Entradas</button></li>
+                <li class="snap-center"><button onclick="switchTab('tab-postres', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-display bg-brand-card text-brand-muted border border-white/5 hover:text-white hover:border-brand-orange/50 transition-all duration-300">Postres</button></li>
             </ul>
         </div>
     </nav>
 
-    <main class="max-w-lg mx-auto px-4 pt-8 min-h-[50vh] pb-12">
-
+    <main class="max-w-lg mx-auto px-4 pt-8 min-h-[50vh] pb-12 flex-grow">
         <section id="tab-gins" class="menu-section grid gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Gin Bar
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span> Gin Bar
             </h2>
-            <div id="loader-tab-gins" class="text-brand-muted text-sm text-center animate-pulse py-10">Preparando copas...</div>
+            <div id="loader-tab-gins" class="flex flex-col items-center justify-center py-12 gap-3 opacity-60 animate-pulse">
+                <div class="w-8 h-8 border-2 border-brand-orange border-t-transparent rounded-full animate-spin"></div>
+                <span class="text-xs font-display tracking-widest uppercase">Preparando copas...</span>
+            </div>
         </section>
 
         <section id="tab-tragos-clasicos" class="menu-section hidden gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Tragos Clásicos
-            </h2>
-            <div id="loader-tab-tragos-clasicos" class="text-brand-muted text-sm text-center animate-pulse py-10">Preparando clásicos...</div>
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3"><span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span>Clásicos</h2>
+            <div id="loader-tab-tragos-clasicos" class="text-brand-muted text-xs text-center py-10 font-display tracking-widest uppercase">Cargando...</div>
         </section>
-
         <section id="tab-tragos-autor" class="menu-section hidden gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Tragos de Autor
-            </h2>
-            <div id="loader-tab-tragos-autor" class="text-brand-muted text-sm text-center animate-pulse py-10">Creando magia...</div>
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3"><span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span>De Autor</h2>
+            <div id="loader-tab-tragos-autor" class="text-brand-muted text-xs text-center py-10 font-display tracking-widest uppercase">Cargando...</div>
         </section>
         <section id="tab-cervezas" class="menu-section hidden gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Birras
-            </h2>
-            <div id="loader-tab-cervezas" class="text-brand-muted text-sm text-center animate-pulse py-10">Enfriando pintas...</div>
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3"><span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span>Cervezas</h2>
+            <div id="loader-tab-cervezas" class="text-brand-muted text-xs text-center py-10 font-display tracking-widest uppercase">Cargando...</div>
         </section>
-
         <section id="tab-burgers" class="menu-section hidden gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Smash Burgers
-            </h2>
-            <div id="loader-tab-burgers" class="text-brand-muted text-sm text-center animate-pulse py-10">Cargando burgers...</div>
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3"><span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span>Burgers</h2>
+            <div id="loader-tab-burgers" class="text-brand-muted text-xs text-center py-10 font-display tracking-widest uppercase">Cargando...</div>
         </section>
-
         <section id="tab-sandwiches" class="menu-section hidden gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Sándwiches
-            </h2>
-            <div id="loader-tab-sandwiches" class="text-brand-muted text-sm text-center animate-pulse py-10">Cargando sándwiches...</div>
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3"><span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span>Sándwiches</h2>
+            <div id="loader-tab-sandwiches" class="text-brand-muted text-xs text-center py-10 font-display tracking-widest uppercase">Cargando...</div>
         </section>
-
         <section id="tab-pizzas" class="menu-section hidden gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Pizzas Caseras
-            </h2>
-            <div id="loader-tab-pizzas" class="text-brand-muted text-sm text-center animate-pulse py-10">Horneando menú...</div>
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3"><span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span>Pizzas</h2>
+            <div id="loader-tab-pizzas" class="text-brand-muted text-xs text-center py-10 font-display tracking-widest uppercase">Cargando...</div>
         </section>
-
         <section id="tab-papas" class="menu-section hidden gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Papas Fritas
-            </h2>
-            <div id="loader-tab-papas" class="text-brand-muted text-sm text-center animate-pulse py-10">Fritando papas...</div>
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3"><span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span>Papas</h2>
+            <div id="loader-tab-papas" class="text-brand-muted text-xs text-center py-10 font-display tracking-widest uppercase">Cargando...</div>
         </section>
-
         <section id="tab-tequenos" class="menu-section hidden gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-                <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Tequeños & Empanadas
-            </h2>
-            <div id="loader-tab-tequenos" class="text-brand-muted text-sm text-center animate-pulse py-10">Cargando entradas...</div>
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3"><span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span>Entradas</h2>
+            <div id="loader-tab-tequenos" class="text-brand-muted text-xs text-center py-10 font-display tracking-widest uppercase">Cargando...</div>
         </section>
-
         <section id="tab-postres" class="menu-section hidden gap-4">
-            <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-2 pl-1 flex items-center gap-3 opacity-90">
-            <span class="w-1 h-7 bg-brand-orange rounded-full inline-block shadow-orange-glow"></span> Dulces
-        </h2>
-        <div id="loader-tab-postres" class="text-brand-muted text-sm text-center animate-pulse py-10">Endulzando...</div>
-    </section>
-
+            <h2 class="font-serif italic text-3xl text-white mb-4 pl-1 flex items-center gap-3"><span class="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-orange-glow"></span>Postres</h2>
+            <div id="loader-tab-postres" class="text-brand-muted text-xs text-center py-10 font-display tracking-widest uppercase">Cargando...</div>
+        </section>
     </main>
 
-    <footer class="bg-brand-dark border-t border-white/5 pt-12 pb-8 relative overflow-hidden mt-auto">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-brand-orange/5 blur-[120px] pointer-events-none"></div>
+    <footer class="bg-[#050505] relative overflow-hidden pt-12 pb-8 mt-auto border-t border-white/5">
+        
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[100px] bg-brand-orange/10 blur-[90px] rounded-full pointer-events-none"></div>
 
-        <div class="max-w-md mx-auto px-6 relative z-10">
-            <div class="flex justify-center gap-10 mb-10">
-                <a href="https://www.instagram.com/la.gintoneriaer/" target="_blank" class="group flex flex-col items-center gap-3 transition-transform hover:-translate-y-1">
-                    <div class="p-3.5 rounded-full bg-white/5 border border-white/10 group-hover:border-brand-orange/50 group-hover:bg-brand-orange/10 transition-colors shadow-lg">
-                        <svg class="w-6 h-6 text-brand-muted group-hover:text-brand-orange transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </div>
-                    <span class="text-[11px] uppercase tracking-widest text-brand-muted group-hover:text-white transition-colors font-display">Seguinos</span>
-                </a>
-
-                <a href="https://www.google.com/maps/place/Alejo+Peyret+168,+E3280+Col%C3%B3n,+Entre+R%C3%ADos/@-32.2162122,-58.1371011,989m/data=!3m2!1e3!4b1!4m6!3m5!1s0x95ae330413ba0e37:0xba1591b2241ea97b!8m2!3d-32.2162122!4d-58.1371011!16s%2Fg%2F11l75zhr2h?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="group flex flex-col items-center gap-3 transition-transform hover:-translate-y-1">
-                    <div class="p-3.5 rounded-full bg-white/5 border border-white/10 group-hover:border-brand-orange/50 group-hover:bg-brand-orange/10 transition-colors shadow-lg">
-                        <svg class="w-6 h-6 text-brand-muted group-hover:text-brand-orange transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    </div>
-                    <span class="text-[11px] uppercase tracking-widest text-brand-muted group-hover:text-white transition-colors font-display">Cómo llegar</span>
-                </a>
-            </div>
-
-            <div class="text-center space-y-8 mb-8 border-t border-white/5 pt-8">
-                <div>
-                    <h4 class="text-white font-display uppercase tracking-widest text-sm mb-2 text-brand-orange">Ubicación</h4>
-                    <p class="text-brand-muted text-sm font-light leading-relaxed font-sans">
-                        Alejo Peyret 1684<br>
-                        Colon Entre Rios, Argentina
-                    </p>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-display uppercase tracking-widest text-sm mb-2 text-brand-orange">Horarios</h4>
-                    <p class="text-brand-muted text-sm font-light leading-relaxed font-sans">
-                        Miercoles a Domingo<br>
-                        <span class="text-white font-medium">18:00hs - 03:00hs</span>
-                    </p>
+        <div class="max-w-lg mx-auto px-6 relative z-10">
+            
+            <div class="text-center mb-10">
+                <h2 class="font-serif italic text-3xl text-white drop-shadow-lg">La Gintonería</h2>
+                <div class="flex items-center justify-center gap-3 mt-2 opacity-50">
+                    <div class="h-px w-6 bg-brand-orange"></div>
+                    <span class="text-[10px] font-display uppercase tracking-[0.2em] text-white">Bar & Cocina</span>
+                    <div class="h-px w-6 bg-brand-orange"></div>
                 </div>
             </div>
 
-            <div class="text-center pt-6 border-t border-white/5">
-                <img src="uploaded:image_29b2db.png-436dca3c-2a7d-4e9a-80e3-992b9ea672dd" alt="Logo Footer" class="w-8 h-8 object-contain logo-white-filter mx-auto mb-3 opacity-50">
-                <p class="font-display uppercase tracking-widest text-[10px] text-brand-muted/40">© 2024 La Gintoneria. Todos los derechos reservados.</p>
+            <div class="grid grid-cols-2 gap-8 mb-10 border-b border-white/5 pb-10">
+                <div class="flex flex-col items-center text-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-brand-muted group-hover:text-brand-orange group-hover:border-brand-orange/50 transition-all duration-300 bg-white/[0.02]">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <div>
+                        <span class="block font-display uppercase text-[10px] tracking-widest text-white/40 mb-1">Ubicación</span>
+                        <a href="https://www.google.com/maps/place/Alejo+Peyret+168,+E3280+Col%C3%B3n,+Entre+R%C3%ADos/@-32.2162122,-58.1371011,989m/data=!3m2!1e3!4b1!4m6!3m5!1s0x95ae330413ba0e37:0xba1591b2241ea97b!8m2!3d-32.2162122!4d-58.1371011!16s%2Fg%2F11l75zhr2h?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-sm font-light text-white hover:text-brand-orange transition-colors">
+                            Alejo Peyret 1684<br>Colón, Entre Ríos
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center text-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-brand-muted group-hover:text-brand-orange group-hover:border-brand-orange/50 transition-all duration-300 bg-white/[0.02]">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <span class="block font-display uppercase text-[10px] tracking-widest text-white/40 mb-1">Horarios</span>
+                        <p class="text-sm font-light text-white">
+                            Lunes - Lunes<br>
+                            <span class="text-brand-orange">19:00 - 03:00</span>
+                        </p>
+                    </div>
+                </div>
             </div>
+
+            <div class="flex justify-center mb-8">
+                <a href="https://www.instagram.com/la.gintoneriaer/" target="_blank" class="group relative px-8 py-3 rounded-full bg-white/[0.03] border border-white/10 overflow-hidden transition-all duration-300 hover:border-brand-orange/30">
+                    <div class="absolute inset-0 bg-brand-orange/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                    <div class="relative flex items-center gap-3">
+                        <svg class="w-4 h-4 text-brand-muted group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <span class="font-display uppercase tracking-widest text-xs font-bold text-white">Seguinos en Instagram</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flex flex-col items-center gap-4 opacity-30 hover:opacity-80 transition-opacity">
+                <img src="uploaded:image_29b2db.png-436dca3c-2a7d-4e9a-80e3-992b9ea672dd" alt="Logo" class="w-6 h-6 object-contain logo-white-filter">
+                <p class="font-display uppercase tracking-[0.2em] text-[9px] text-white">© 2024 La Gintonería</p>
+            </div>
+
         </div>
     </footer>
 
@@ -266,14 +252,10 @@
             if (cat.includes('cerveza') || cat.includes('porron')) return 'tab-cervezas';
             if (cat.includes('postre')) return 'tab-postres';
 
-            // --- Lógica Nueva de Tragos ---
-            
-            // 1. Tragos de Autor: Si dice "autor", "especial", "firma" o "casa"
             if (cat.includes('autor') || cat.includes('especial') || cat.includes('firma') || cat.includes('casa')) {
                 return 'tab-tragos-autor';
             }
 
-            // 2. Tragos Clásicos: Palabras clave generales
             const keywordsAlcohol = ['trago', 'fernet', 'vermut', 'champagne', 'espumante', 'jagger', 'absolut', 'smirnoff', 'campari', 'gancia', 'aperol', 'negroni', 'clasico', 'clásico', 'caipira', 'mojito', 'cuba'];
             
             if (keywordsAlcohol.some(key => cat.includes(key))) {
@@ -293,8 +275,6 @@
                 'tab-gins': 'https://images.unsplash.com/photo-1563223771-47d70cb72725?q=80&w=400&fit=crop', 
                 'tab-cervezas': 'https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=400&fit=crop',
                 'tab-postres': 'https://images.unsplash.com/photo-1563729768-6af58464107b?q=80&w=400&fit=crop',
-                
-                // Imágenes por defecto para las nuevas secciones
                 'tab-tragos-clasicos': 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=400&fit=crop',
                 'tab-tragos-autor': 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=400&fit=crop'
             };
@@ -302,36 +282,36 @@
         }
 
         function renderItem(item, sectionId) {
-        const container = document.getElementById(sectionId);
-        let cleanPrice = item[KEYS.precio] || '';
-        cleanPrice = cleanPrice.replace('$', '').trim();
-        const processedUrl = procesarURLImagen(item[KEYS.imagen]);
-        const imgSrc = processedUrl ? processedUrl : getDefaultImage(sectionId);
-        const card = `
-        <article class="bg-brand-card rounded-3xl p-3 flex gap-4 shadow-lg border border-white/5 items-center fade-in hover:border-brand-orange/30 transition-all duration-300 group">
-            <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-inner border border-white/10 flex-shrink-0 relative">
-                <img src="${imgSrc}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="${item[KEYS.producto]}" loading="lazy">
-            </div>
-            
-            <div class="flex-1 min-w-0 py-1 flex flex-col justify-between h-full">
-                <div>
-                    <div class="flex justify-between items-start gap-2 mb-1">
-                        <h3 class="font-display font-bold text-lg text-white leading-tight group-hover:text-brand-orange transition-colors uppercase tracking-wide">
-                            ${item[KEYS.producto]}
-                        </h3>
-                        <span class="text-brand-orange font-bold text-lg whitespace-nowrap font-display  px-2 rounded-md">
-                            $${cleanPrice}
-                        </span>
-                    </div>
-                    <p class="text-xs text-brand-muted leading-snug font-light line-clamp-2">
-                        ${item[KEYS.descripcion] || ''}
-                    </p>
+            const container = document.getElementById(sectionId);
+            let cleanPrice = item[KEYS.precio] || '';
+            cleanPrice = cleanPrice.replace('$', '').trim();
+            const processedUrl = procesarURLImagen(item[KEYS.imagen]);
+            const imgSrc = processedUrl ? processedUrl : getDefaultImage(sectionId);
+            const card = `
+            <article class="bg-brand-card rounded-3xl p-3 flex gap-4 shadow-lg border border-white/5 items-center fade-in hover:border-brand-orange/30 transition-all duration-300 group">
+                <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-inner border border-white/10 flex-shrink-0 relative">
+                    <img src="${imgSrc}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="${item[KEYS.producto]}" loading="lazy">
                 </div>
-            </div>
-        </article>
-        `;
-        container.insertAdjacentHTML('beforeend', card);
-    }
+                
+                <div class="flex-1 min-w-0 py-1 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-1">
+                            <h3 class="font-display font-bold text-lg text-white leading-tight group-hover:text-brand-orange transition-colors uppercase tracking-wide">
+                                ${item[KEYS.producto]}
+                            </h3>
+                            <span class="text-brand-orange font-bold text-lg whitespace-nowrap font-display  px-2 rounded-md">
+                                $${cleanPrice}
+                            </span>
+                        </div>
+                        <p class="text-xs text-brand-muted leading-snug font-light line-clamp-2">
+                            ${item[KEYS.descripcion] || ''}
+                        </p>
+                    </div>
+                </div>
+            </article>
+            `;
+            container.insertAdjacentHTML('beforeend', card);
+        }
 
         function switchTab(sectionId, btn) {
             document.querySelectorAll('.menu-section').forEach(sec => {
@@ -364,20 +344,14 @@
             btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
 
-        // Función para convertir enlaces de Google Drive a enlaces directos de imagen
         function procesarURLImagen(url) {
             if (!url) return null;
-            
-            // Si es un enlace de Google Drive
             if (url.includes('drive.google.com')) {
-                // Extraemos el ID del archivo
                 const idMatch = url.match(/\/d\/(.*?)(?:\/|$)/);
                 if (idMatch && idMatch[1]) {
-                    // Retornamos el formato que permite visualizar la imagen directamente
                     return `https://lh3.googleusercontent.com/d/${idMatch[1]}`;
                 }
             }
-            
             return url;
         }
 
