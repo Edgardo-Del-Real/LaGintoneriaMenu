@@ -8,6 +8,7 @@
     />
     <title>La Gintonería | Menú Digital</title>
 
+    <link rel="icon" href="assets/images/faviconLaGinto.ico" /> 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -144,77 +145,9 @@
             <div class="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-black/50 to-transparent z-10 pointer-events-none"></div>
             
             <ul class="flex overflow-x-auto gap-1 px-2 py-2 no-scrollbar relative z-0 snap-x items-center" id="nav-tabs">
-                
+                <!-- Las categorías se generan dinámicamente -->
                 <li class="snap-center">
-                    <button onclick="switchTab('tab-gins', this)" class="nav-btn active whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-[#fdba74] text-brand-black shadow-glow transition-all duration-300 transform">
-                        Gins
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-tragos-clasicos', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Clásicos
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-cervezas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Birras
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-tragos-autor', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Autor
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-jarras', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Jarras
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-espumantes', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Espumantes
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-tequenos', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Entradas
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-papas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Papas
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-pizzas', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Pizzas
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-burgers', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Burgers
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-sandwiches', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Sándwiches
-                    </button>
-                </li>
-
-                <li class="snap-center">
-                    <button onclick="switchTab('tab-postres', this)" class="nav-btn whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display bg-transparent text-brand-muted hover:text-white hover:bg-white/5 transition-all duration-300">
-                        Postres
-                    </button>
+                    <span class="whitespace-nowrap px-5 py-2 text-[12px] font-display text-brand-muted animate-pulse">Cargando menú...</span>
                 </li>
             </ul>
         </div>
@@ -223,142 +156,14 @@
 
     <main
       class="max-w-xl mx-auto px-5 pt-12 min-h-[50vh] pb-24 flex-grow relative z-10"
+      id="menu-container"
     >
-      <div id="tab-gins" class="menu-section grid gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Gin Bar</h2>
-        </div>
-        <div
-          id="loader-tab-gins"
-          class="flex flex-col items-center justify-center py-20 gap-4 opacity-40 animate-pulse"
-        >
-          <div
-            class="w-12 h-12 border-2 border-brand-orange border-t-transparent rounded-full animate-spin"
-          ></div>
-        </div>
+      <!-- Loader inicial -->
+      <div id="initial-loader" class="flex flex-col items-center justify-center py-20 gap-4 opacity-40 animate-pulse">
+        <div class="w-12 h-12 border-2 border-brand-orange border-t-transparent rounded-full animate-spin"></div>
+        <span class="text-brand-muted text-sm">Cargando menú...</span>
       </div>
-
-      <div id="tab-tragos-clasicos" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Clásicos</h2>
-        </div>
-        <div
-          id="loader-tab-tragos-clasicos"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-tragos-autor" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">De Autor</h2>
-        </div>
-        <div
-          id="loader-tab-tragos-autor"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-cervezas" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Birras</h2>
-        </div>
-        <div
-          id="loader-tab-cervezas"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-burgers" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Burgers</h2>
-        </div>
-        <div
-          id="loader-tab-burgers"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-sandwiches" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Sándwiches</h2>
-        </div>
-        <div
-          id="loader-tab-sandwiches"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-pizzas" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Pizzas</h2>
-        </div>
-        <div
-          id="loader-tab-pizzas"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-papas" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Papas</h2>
-        </div>
-        <div
-          id="loader-tab-papas"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-tequenos" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Entradas</h2>
-        </div>
-        <div
-          id="loader-tab-tequenos"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-postres" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Dulces</h2>
-        </div>
-        <div
-          id="loader-tab-postres"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-jarras" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Jarras</h2>
-        </div>
-        <div
-          id="loader-tab-jarras"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
-      <div id="tab-espumantes" class="menu-section hidden gap-6">
-        <div class="flex items-end justify-between mb-2 px-1">
-          <h2 class="font-serif italic text-4xl text-white">Espumantes</h2>
-        </div>
-        <div
-          id="loader-tab-espumantes"
-          class="text-brand-muted text-xs text-center py-10 opacity-40"
-        >
-          Cargando...
-        </div>
-      </div>
+      <!-- Las secciones se generan dinámicamente -->
     </main>
 
     <footer class="bg-brand-black relative mt-auto">
@@ -410,7 +215,7 @@
               </p>
             </div>
 
-            <div class="pt-2">
+            <div class="pt-2 flex flex-col items-center md:items-start gap-5">
               <a
                 href="https://www.instagram.com/la.gintoneriaer/"
                 target="_blank"
@@ -422,6 +227,16 @@
                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
                   />
                 </svg>
+              </a>
+              <a
+                href="https://www.google.com/search?q=la+gintoneria+colon&rlz=1C1UEAD_esAR946AR946&oq=la+gintoneria+colon&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIQCAEQLhivARjHARiABBiOBTIKCAIQABiABBiiBDIKCAMQABiABBiiBDIHCAQQABjvBTIKCAUQABiiBBiJBTIHCAYQABjvBTIGCAcQRRg70gEINDM0M2owajeoAgiwAgHxBVY04GXRHLLQ8QVWNOBl0Ryy0A&sourceid=chrome&ie=UTF-8#lrd=0x95ae330007e70583:0x8d8e351b9d099d47,3,,,,"
+                target="_blank"
+                class="inline-flex items-center gap-3 text-sm text-brand-muted hover:text-white transition-colors border-b border-brand-muted/30 pb-1 hover:border-white"
+              >
+                <span>Dejanos tu reseña</span>
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0,0,256,256">
+<g fill="#d9d9d9" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.33333,5.33333)"><path d="M43.611,20.083h-1.611v-0.083h-18v8h11.303c-1.649,4.657 -6.08,8 -11.303,8c-6.627,0 -12,-5.373 -12,-12c0,-6.627 5.373,-12 12,-12c3.059,0 5.842,1.154 7.961,3.039l5.657,-5.657c-3.572,-3.329 -8.35,-5.382 -13.618,-5.382c-11.045,0 -20,8.955 -20,20c0,11.045 8.955,20 20,20c11.045,0 20,-8.955 20,-20c0,-1.341 -0.138,-2.65 -0.389,-3.917z"></path><path d="M6.306,14.691l6.571,4.819c1.778,-4.402 6.084,-7.51 11.123,-7.51c3.059,0 5.842,1.154 7.961,3.039l5.657,-5.657c-3.572,-3.329 -8.35,-5.382 -13.618,-5.382c-7.682,0 -14.344,4.337 -17.694,10.691z"></path><path d="M24,44c5.166,0 9.86,-1.977 13.409,-5.192l-6.19,-5.238c-2.008,1.521 -4.504,2.43 -7.219,2.43c-5.202,0 -9.619,-3.317 -11.283,-7.946l-6.522,5.025c3.31,6.477 10.032,10.921 17.805,10.921z"></path><path d="M43.611,20.083h-1.611v-0.083h-18v8h11.303c-0.792,2.237 -2.231,4.166 -4.087,5.571c0.001,-0.001 0.002,-0.001 0.003,-0.002l6.19,5.238c-0.438,0.398 6.591,-4.807 6.591,-14.807c0,-1.341 -0.138,-2.65 -0.389,-3.917z"></path></g></g>
+</svg>
               </a>
             </div>
           </div>
@@ -468,9 +283,38 @@
         disponible: "disponible",
       };
 
+      // Imagen por defecto genérica
+      const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=400&fit=crop";
+
+      // Orden personalizado de categorías (las que no estén van al final)
+      const ORDEN_CATEGORIAS = [
+        'gin',
+        'tragos',
+        'cerveza',
+        'tragos de autor',
+        'jarras',
+        'espumantes',
+        'empanadas',
+        'tequenos',
+        'papas fritas',
+        'pizzas',
+        'hamburguesa',
+        'sandwiches',
+        'postre'
+      ];
+
       document.addEventListener("DOMContentLoaded", () => {
         cargarMenu();
       });
+
+      // Función para obtener el índice de orden de una categoría
+      function obtenerOrdenCategoria(categoria) {
+        const catNormalizada = categoria.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        const index = ORDEN_CATEGORIAS.findIndex(c => 
+          catNormalizada.includes(c) || c.includes(catNormalizada)
+        );
+        return index === -1 ? 999 : index; // Si no está en la lista, va al final
+      }
 
       async function cargarMenu() {
         try {
@@ -478,122 +322,114 @@
           if (!response.ok) throw new Error("Error de red");
           const data = await response.json();
 
-          document
-            .querySelectorAll('[id^="loader-"]')
-            .forEach((el) => el.remove());
+          // Filtrar solo productos disponibles
+          const productosDisponibles = data.filter(item => item[KEYS.disponible] === "TRUE");
 
-          data.forEach((item) => {
-            if (item[KEYS.disponible] === "TRUE") {
-              const sectionId = getSectionId(item[KEYS.categoria]);
-              if (sectionId) {
-                renderItem(item, sectionId);
+          // Agrupar productos por categoría
+          const categoriasMap = new Map();
+          productosDisponibles.forEach(item => {
+            const categoria = item[KEYS.categoria]?.trim();
+            if (categoria) {
+              if (!categoriasMap.has(categoria)) {
+                categoriasMap.set(categoria, []);
               }
+              categoriasMap.get(categoria).push(item);
             }
           });
+
+          // Ordenar categorías según el orden personalizado
+          const categoriasOrdenadas = new Map(
+            [...categoriasMap.entries()].sort((a, b) => {
+              return obtenerOrdenCategoria(a[0]) - obtenerOrdenCategoria(b[0]);
+            })
+          );
+
+          // Si no hay categorías, mostrar mensaje
+          if (categoriasOrdenadas.size === 0) {
+            document.getElementById('initial-loader').innerHTML = `
+              <span class="text-brand-muted text-sm">No hay productos disponibles</span>
+            `;
+            document.getElementById('nav-tabs').innerHTML = `
+              <li class="snap-center">
+                <span class="whitespace-nowrap px-5 py-2 text-[12px] font-display text-brand-muted">Sin categorías</span>
+              </li>
+            `;
+            return;
+          }
+
+          // Remover el loader inicial
+          document.getElementById('initial-loader')?.remove();
+
+          // Generar navegación y secciones dinámicamente
+          const navContainer = document.getElementById('nav-tabs');
+          const menuContainer = document.getElementById('menu-container');
+          
+          navContainer.innerHTML = '';
+          
+          let isFirst = true;
+          categoriasOrdenadas.forEach((productos, categoria) => {
+            const sectionId = generarSectionId(categoria);
+            
+            // Crear botón de navegación
+            const navItem = document.createElement('li');
+            navItem.className = 'snap-center';
+            navItem.innerHTML = `
+              <button onclick="switchTab('${sectionId}', this)" 
+                class="nav-btn ${isFirst ? 'active bg-[#fdba74] text-brand-black shadow-glow transform' : 'bg-transparent text-brand-muted hover:text-white hover:bg-white/5'} 
+                whitespace-nowrap px-5 py-2 rounded-xl text-[12px] font-bold uppercase tracking-[0.15em] font-display transition-all duration-300">
+                ${categoria}
+              </button>
+            `;
+            navContainer.appendChild(navItem);
+
+            // Crear sección del menú
+            const section = document.createElement('div');
+            section.id = sectionId;
+            section.className = `menu-section ${isFirst ? 'grid' : 'hidden'} gap-6`;
+            section.innerHTML = `
+              <div class="flex items-end justify-between mb-2 px-1">
+                <h2 class="font-serif italic text-4xl text-white">${categoria}</h2>
+              </div>
+            `;
+            menuContainer.appendChild(section);
+
+            // Renderizar productos de esta categoría
+            productos.forEach(item => renderItem(item, sectionId));
+
+            isFirst = false;
+          });
+
         } catch (error) {
           console.error("Error cargando menú:", error);
+          document.getElementById('initial-loader').innerHTML = `
+            <span class="text-red-400 text-sm">Error al cargar el menú. Intenta recargar la página.</span>
+          `;
         }
       }
 
-      function getSectionId(catRaw) {
-        if (!catRaw) return null;
-        const cat = catRaw.toLowerCase().trim();
-
-        if (
-          cat === "gin" ||
-          cat.includes("heredero") ||
-          cat.includes("promo 1") ||
-          cat.includes("promo 2")
-        )
-          return "tab-gins";
-        if (cat.includes("hamburguesa")) return "tab-burgers";
-        if (cat.includes("sandwich") || cat.includes("bondiola"))
-          return "tab-sandwiches";
-        if (cat.includes("pizza")) return "tab-pizzas";
-        if (cat.includes("papa")) return "tab-papas";
-        if (cat.includes("teque") || cat.includes("empanada"))
-          return "tab-tequenos";
-        if (cat.includes("cerveza") || cat.includes("porron"))
-          return "tab-cervezas";
-        if (cat.includes("postre")) return "tab-postres";
-        if (cat.includes("jarra")) return "tab-jarras";
-        if (cat.includes("espumante")) return "tab-espumantes";
-
-        if (
-          cat.includes("autor") ||
-          cat.includes("especial") ||
-          cat.includes("firma") ||
-          cat.includes("casa")
-        ) {
-          return "tab-tragos-autor";
-        }
-
-        const keywordsAlcohol = [
-          "trago",
-          "fernet",
-          "vermut",
-          "champagne",
-          "espumante",
-          "jagger",
-          "absolut",
-          "smirnoff",
-          "campari",
-          "gancia",
-          "aperol",
-          "negroni",
-          "clasico",
-          "clásico",
-          "caipira",
-          "mojito",
-          "cuba",
-          "jarras",
-        ];
-
-        if (keywordsAlcohol.some((key) => cat.includes(key))) {
-          return "tab-tragos-clasicos";
-        }
-
-        return null;
-      }
-
-      function getDefaultImage(sectionId) {
-        const images = {
-          "tab-burgers":
-            "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=400&fit=crop",
-          "tab-sandwiches":
-            "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=400&fit=crop",
-          "tab-pizzas":
-            "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=400&fit=crop",
-          "tab-papas":
-            "https://images.unsplash.com/photo-1630384060421-a4323ce56d46?q=80&w=400&fit=crop",
-          "tab-tequenos":
-            "https://images.unsplash.com/photo-1563503254-2061ebc6b30f?q=80&w=400&fit=crop",
-          "tab-gins":
-            "https://images.unsplash.com/photo-1563223771-47d70cb72725?q=80&w=400&fit=crop",
-          "tab-cervezas":
-            "https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=400&fit=crop",
-          "tab-postres":
-            "https://images.unsplash.com/photo-1563729768-6af58464107b?q=80&w=400&fit=crop",
-          "tab-tragos-clasicos":
-            "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=400&fit=crop",
-          "tab-tragos-autor":
-            "https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=400&fit=crop",
-        };
-        return images[sectionId] || images["tab-burgers"];
+      // Genera un ID único para la sección basado en el nombre de la categoría
+      function generarSectionId(categoria) {
+        return 'tab-' + categoria
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '') // Remover acentos
+          .replace(/[^a-z0-9]+/g, '-') // Reemplazar caracteres especiales por guiones
+          .replace(/^-|-$/g, ''); // Remover guiones al inicio/final
       }
 
       function renderItem(item, sectionId) {
         const container = document.getElementById(sectionId);
+        if (!container) return;
+        
         let cleanPrice = item[KEYS.precio] || "";
         cleanPrice = cleanPrice.replace("$", "").trim();
         const processedUrl = procesarURLImagen(item[KEYS.imagen]);
-        const imgSrc = processedUrl ? processedUrl : getDefaultImage(sectionId);
+        const imgSrc = processedUrl ? processedUrl : DEFAULT_IMAGE;
 
-        // Tarjeta Minimalista
         const card = `
             <article class="relative flex items-center gap-4 p-4 rounded-2xl bg-[#121212] border border-white/5 hover:border-brand-orange/30 transition-all duration-300 group fade-up bg-card-gradient overflow-hidden">
                 <div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 relative shadow-lg">
-                    <img src="${imgSrc}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" alt="${item[KEYS.producto]}" loading="lazy">
+                    <img src="${imgSrc}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" alt="${item[KEYS.producto]}" loading="lazy" onerror="this.src='${DEFAULT_IMAGE}'">
                 </div>
                 
                 <div class="flex-1 min-w-0 z-10">
@@ -615,54 +451,43 @@
       }
 
       function switchTab(sectionId, btn) {
-    // 1. Ocultar secciones (igual que antes)
-    document.querySelectorAll('.menu-section').forEach(sec => {
-        sec.classList.add('hidden');
-        sec.classList.remove('grid');
-    });
-
-    // 2. Mostrar sección activa (igual que antes)
-    const activeSec = document.getElementById(sectionId);
-    if(activeSec) {
-        activeSec.classList.remove('hidden');
-        activeSec.classList.add('grid');
-        activeSec.querySelectorAll('.fade-up').forEach(el => {
-            el.style.animation = 'none';
-            el.offsetHeight; 
-            el.style.animation = null;
+        // 1. Ocultar todas las secciones
+        document.querySelectorAll('.menu-section').forEach(sec => {
+            sec.classList.add('hidden');
+            sec.classList.remove('grid');
         });
-    }
 
-    // --- AQUÍ ESTÁ LA SOLUCIÓN PARA MOBILE ---
-    
-    // Definimos las clases exactas que causan conflicto
-    const activeClasses = ['bg-[#fdba74]', 'text-brand-black', 'shadow-glow', 'active', 'transform'];
-    const inactiveClasses = ['bg-transparent', 'text-brand-muted', 'hover:text-white', 'hover:bg-white/5'];
+        // 2. Mostrar sección activa
+        const activeSec = document.getElementById(sectionId);
+        if(activeSec) {
+            activeSec.classList.remove('hidden');
+            activeSec.classList.add('grid');
+            // Re-trigger animaciones
+            activeSec.querySelectorAll('.fade-up').forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight; 
+                el.style.animation = null;
+            });
+        }
 
-    document.querySelectorAll('.nav-btn').forEach(b => {
-        // A TODOS los botones:
-        // 1. Les quitamos el estado activo
-        b.classList.remove(...activeClasses);
-        
-        // 2. Les DEVOLVEMOS el estado inactivo (incluyendo el hover)
-        // Usamos el spread syntax (...) para añadir varias clases a la vez
-        b.classList.add(...inactiveClasses);
-    });
+        // 3. Actualizar estados de los botones
+        const activeClasses = ['bg-[#fdba74]', 'text-brand-black', 'shadow-glow', 'active', 'transform'];
+        const inactiveClasses = ['bg-transparent', 'text-brand-muted', 'hover:text-white', 'hover:bg-white/5'];
 
-    // AL BOTÓN QUE TOCASTE:
-    // 1. Le quitamos el estado inactivo Y LAS CLASES DE HOVER
-    // Esto evita que el celular mezcle el naranja con el gris del hover
-    btn.classList.remove(...inactiveClasses);
-    
-    // 2. Le ponemos el estado activo
-    btn.classList.add(...activeClasses);
+        document.querySelectorAll('.nav-btn').forEach(b => {
+            b.classList.remove(...activeClasses);
+            b.classList.add(...inactiveClasses);
+        });
 
-    // 4. Scroll (igual que antes)
-    const header = document.querySelector('header');
-    const headerHeight = header ? header.offsetHeight : 0;
-    window.scrollTo({ top: headerHeight * 0.8, behavior: 'smooth' });
-    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-}
+        btn.classList.remove(...inactiveClasses);
+        btn.classList.add(...activeClasses);
+
+        // 4. Scroll suave
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 0;
+        window.scrollTo({ top: headerHeight * 0.8, behavior: 'smooth' });
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
 
       function procesarURLImagen(url) {
         if (!url) return null;
