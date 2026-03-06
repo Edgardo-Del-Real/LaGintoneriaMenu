@@ -101,6 +101,48 @@
       .text-readability {
         text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
       }
+
+      /* Modal */
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(24px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes backdropIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+      .modal-enter {
+        animation: modalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .backdrop-enter {
+        animation: backdropIn 0.25s ease forwards;
+      }
+      @keyframes modalOut {
+        from {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(16px) scale(0.97);
+        }
+      }
+      @keyframes backdropOut {
+        from { opacity: 1; }
+        to   { opacity: 0; }
+      }
+      .modal-exit {
+        animation: modalOut 0.25s cubic-bezier(0.4, 0, 1, 1) forwards;
+      }
+      .backdrop-exit {
+        animation: backdropOut 0.25s ease forwards;
+      }
     </style>
   </head>
 
@@ -286,6 +328,9 @@
       // Imagen por defecto genérica
       const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=400&fit=crop";
 
+      // Registro global de productos para el modal
+      const allProducts = [];
+
       // Orden personalizado de categorías (las que no estén van al final)
       const ORDEN_CATEGORIAS = [
         'gin',
@@ -426,8 +471,16 @@
         const processedUrl = procesarURLImagen(item[KEYS.imagen]);
         const imgSrc = processedUrl ? processedUrl : DEFAULT_IMAGE;
 
+        const idx = allProducts.length;
+        allProducts.push({
+          name: item[KEYS.producto],
+          price: cleanPrice,
+          desc: item[KEYS.descripcion] || "",
+          imgSrc
+        });
+
         const card = `
-            <article class="relative flex items-center gap-4 p-4 rounded-2xl bg-[#121212] border border-white/5 hover:border-brand-orange/30 transition-all duration-300 group fade-up bg-card-gradient overflow-hidden">
+            <article class="relative flex items-center gap-4 p-4 rounded-2xl bg-[#121212] border border-white/5 hover:border-brand-orange/30 transition-all duration-300 group fade-up bg-card-gradient overflow-hidden cursor-pointer" onclick="openModal(${idx})" role="button" tabindex="0">
                 <div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 relative shadow-lg">
                     <img src="${imgSrc}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" alt="${item[KEYS.producto]}" loading="lazy" onerror="this.src='${DEFAULT_IMAGE}'">
                 </div>
@@ -499,6 +552,121 @@
         }
         return url;
       }
+
+      function openModal(idx) {
+        const product = allProducts[idx];
+        if (!product) return;
+
+        document.getElementById('modal-img').src = product.imgSrc;
+        document.getElementById('modal-img').alt = product.name;
+        document.getElementById('modal-name').textContent = product.name;
+        document.getElementById('modal-price').textContent = '$' + product.price;
+        document.getElementById('modal-desc').textContent = product.desc;
+
+        const modal = document.getElementById('product-modal');
+        const article = document.getElementById('modal-article');
+        const backdrop = document.getElementById('modal-backdrop');
+
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        // Re-disparar animaciones
+        article.classList.remove('modal-enter');
+        backdrop.classList.remove('backdrop-enter');
+        void article.offsetWidth;
+        article.classList.add('modal-enter');
+        backdrop.classList.add('backdrop-enter');
+      }
+
+      function closeModal() {
+        const modal = document.getElementById('product-modal');
+        const article = document.getElementById('modal-article');
+        const backdrop = document.getElementById('modal-backdrop');
+
+        article.classList.remove('modal-enter');
+        backdrop.classList.remove('backdrop-enter');
+        article.classList.add('modal-exit');
+        backdrop.classList.add('backdrop-exit');
+
+        setTimeout(() => {
+          modal.classList.add('hidden');
+          article.classList.remove('modal-exit');
+          backdrop.classList.remove('backdrop-exit');
+          document.body.style.overflow = '';
+        }, 250);
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
     </script>
+
+    <!-- Modal de producto -->
+    <div
+      id="product-modal"
+      class="fixed inset-0 z-50 flex items-center justify-center px-4 hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-name"
+    >
+      <!-- Backdrop difuminado -->
+      <div
+        id="modal-backdrop"
+        class="absolute inset-0 bg-black/75 backdrop-blur-sm"
+        onclick="closeModal()"
+      ></div>
+
+      <!-- Contenido del modal -->
+      <article
+        id="modal-article"
+        class="relative z-10 w-full max-w-sm bg-[#121212] rounded-2xl border border-white/10 overflow-hidden shadow-nav flex flex-col max-h-[90dvh]"
+      >
+        <!-- Botón cerrar -->
+        <button
+          onclick="closeModal()"
+          aria-label="Cerrar"
+          class="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/60 border border-white/10 text-brand-muted hover:text-white hover:border-brand-orange/40 transition-all duration-200"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <!-- Imagen -->
+        <div class="relative h-full w-full overflow-hidden flex-shrink-0">
+          <img
+            id="modal-img"
+            src=""  
+            alt=""
+            class="w-full h-[350px] object-cover"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=400&fit=crop'"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/30 to-transparent"></div>
+        </div>
+
+        <!-- Informacion del producto -->
+        <div class="px-5 pt-4 pb-7 overflow-y-auto">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <h2
+              id="modal-name"
+              class="font-serif italic text-2xl text-white leading-tight"
+            ></h2>
+            <span
+              id="modal-price"
+              class="font-display font-bold text-xl text-brand-orange whitespace-nowrap mt-1"
+            ></span>
+          </div>
+          <p
+            id="modal-desc"
+            class="text-sm text-brand-muted font-light leading-relaxed"
+          ></p>
+        </div>
+
+        <!-- Línea decorativa inferior -->
+        <div class="h-1 w-full bg-gradient-to-r from-transparent via-brand-orange/40 to-transparent flex-shrink-0"></div>
+      </article>
+    </div>
+
   </body>
 </html>
