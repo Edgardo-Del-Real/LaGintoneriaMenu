@@ -7,3 +7,4 @@
     }
   ]
 }
+// This file is used to configure the behavior of the Vercel deployment. In this case, it sets up a redirect from any path (indicated by "/(.*)") to the specified destination URL "https://lagintoneriamenu.pages.dev/". The "permanent": true flag indicates that this is a permanent redirect (HTTP status code 301).
